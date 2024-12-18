@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+
+    <section id="book-search">
+        <input type="text" id="search-query" placeholder="Search for books...">
+        <button onclick="searchBooks()">Search</button>
+    </section>
+
+    <section id="book-list">
+        <h2>Available Books</h2>
+        <ul id="books">
+            <!-- List of books will be populated here -->
+        </ul>
+    </section>
+
+    <section id="borrow-book">
+        <h2>Borrow Book</h2>
+        <form id="borrow-form">
+            <input type="text" id="user-email" placeholder="Enter your email" required>
+            <input type="text" id="book-id" placeholder="Enter Book ID" required>
+            <button type="submit">Borrow</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
