@@ -16,7 +16,7 @@ def search():
     books = search_books(query)
     return jsonify({"books": books})
 
-# Route to borrow a book
+# Route to borrow a books
 @app.route('/borrow', methods=['POST'])
 def borrow():
     data = request.get_json()
