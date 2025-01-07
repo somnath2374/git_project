@@ -1,7 +1,7 @@
 <h1>Contributing to GP6_5</h1><br>
 First off, thanks for taking the time to contribute! ❤️<br>
 
-All types of contributions are encouraged and valued. See the Table of Contents for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
+All types of contributions are encouraged and valued. See the <b>Table of Contents</b> for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 <br>
 And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 <br><hr>
@@ -20,17 +20,17 @@ Improving The Documentation
 Styleguides
 Commit Messages
 Join The Project Team
-Code of Conduct
+Code of Conduct<br>
 This project and everyone participating in it is governed by the GP6_5 Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to .
-<br><hr>
-I Have a Question
+<br>
+I Have a Question<br>
 If you want to ask a question, we assume that you have read the available Documentation.
 <br>
 Before you ask a question, it is best to search for existing Issues that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 <br>
 If you then still feel the need to ask a question and need clarification, we recommend the following:
-<br><br><hr>
-Open an Issue.
+<br>
+Open an Issue.<br>
 Provide as much context as you can about what you're running into.
 Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
 We will then take care of the issue as soon as possible.
@@ -38,8 +38,8 @@ We will then take care of the issue as soon as possible.
 I Want To Contribute
 Legal Notice
 When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project licence.
-<br><br><hr>
-Reporting Bugs
+<br>
+Reporting Bugs<br>
 Before Submitting a Bug Report
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 <br><hr>
