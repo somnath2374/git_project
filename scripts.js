@@ -123,7 +123,7 @@ function deleteTransaction(button) {
 }
 
 function addMember() {
-  alert('Add Member functionality to be implemented');
+  alert('Add Member functionality to be implemented ');
 }
 
 
