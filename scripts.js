@@ -106,8 +106,8 @@ function editTransaction(button) {
   const row = button.parentElement.parentElement;
   const book = prompt('Edit book title:', row.cells[0].innerText);
   const member = prompt('Edit member name:', row.cells[1].innerText);
-  const dateBorrowed = prompt('Edit date borrowed (YYYY-MM-DD):', row.cells[2].innerText);
-  const dateReturned = prompt('Edit date returned (YYYY-MM-DD):', row.cells[3].innerText);
+  const dateBorrowed = prompt('Edit date borrowed  (YYYY-MM-DD):', row.cells[2].innerText);
+  const dateReturned = prompt('Edit date returned  (YYYY-MM-DD):', row.cells[3].innerText);
 
   if (book && member && dateBorrowed && dateReturned) {
       row.cells[0].innerText = book;
