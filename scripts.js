@@ -6,7 +6,7 @@ function loadSampleBooks() {
   const books = [
       { cover: 'images/book1.jpg', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', genre: 'Fiction' },
       { cover: 'images/book2.jpg', title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Fiction' },
-      { cover: 'images/book3.jpg', title: '1985', author: 'George Orwell', genre: 'Dystopian' }
+      { cover: 'images/book3.jpg', title: '1984', author: 'George Orwell', genre: 'Dystopian' }
   ];
 
   books.forEach(book => addBookToTable(book));
