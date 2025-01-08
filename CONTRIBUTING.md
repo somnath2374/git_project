@@ -32,7 +32,7 @@ If you then still feel the need to ask a question and need clarification, we rec
 <b>Open an Issue.</b><br>
 Provide as much context as you can about what you're running into.
 Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
-We will then take care of the issue as soon as possible.
+We will then take care of the issue as soon as possible..
 <br><hr>
 <b>I Want To Contribute</b><br>
 Legal Notice<br>
