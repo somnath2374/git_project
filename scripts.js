@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   loadSampleBooks();
+  loadSampleTransactions();
 });
 
 function loadSampleBooks() {
@@ -21,12 +22,18 @@ function loadSampleTransactions() {
   transactions.forEach(transaction => addTransactionToTable(transaction));
 }
 
-function addBook() {
-  const title = prompt('Enter book title:');
-  const author = prompt('Enter book author:');
-  const genre = prompt('Enter book genre:');
-  const cover = prompt('Enter book cover image URL:');
+function promptBookDetails(existingData = {}) {
+  const title = prompt('Enter book title:', existingData.title || '');
+  const author = prompt('Enter book author:', existingData.author || '');
+  const genre = prompt('Enter book genre:', existingData.genre || '');
+  const cover = prompt('Enter book cover image URL:', existingData.cover || '');
+  
+  return { title, author, genre, cover };
+}
 
+function addBook() {
+  const { title, author, genre, cover } = promptBookDetails();
+  
   if (title && author && genre && cover) {
       const book = { cover, title, author, genre };
       addBookToTable(book);
@@ -43,34 +50,36 @@ function addBookToTable(book) {
       <td>${book.author}</td>
       <td>${book.genre}</td>
       <td>
-          <button onclick="editBook(this)">Edit</button>
-          <button onclick="deleteBook(this)">Delete</button>
+          <button class="editBook">Edit</button>
+          <button class="deleteBook">Delete</button>
       </td>
   `;
 
   table.appendChild(row);
 }
 
-function editBook(button) {
-  const row = button.parentElement.parentElement;
-  const title = prompt('Edit book title:', row.cells[1].innerText);
-  const author = prompt('Edit book author:', row.cells[2].innerText);
-  const genre = prompt('Edit book genre:', row.cells[3].innerText);
-  const cover = prompt('Edit book cover image URL:', row.cells[0].querySelector('img').src);
+document.querySelector('#books tbody').addEventListener('click', (event) => {
+  if (event.target.classList.contains('editBook')) {
+      const row = event.target.closest('tr');
+      const { title, author, genre, cover } = promptBookDetails({
+          title: row.cells[1].innerText,
+          author: row.cells[2].innerText,
+          genre: row.cells[3].innerText,
+          cover: row.cells[0].querySelector('img').src
+      });
 
-  if (title && author && genre && cover) {
-      row.cells[0].querySelector('img').src = cover;
-      row.cells[0].querySelector('img').alt = title;
-      row.cells[1].innerText = title;
-      row.cells[2].innerText = author;
-      row.cells[3].innerText = genre;
+      if (title && author && genre && cover) {
+          row.cells[0].querySelector('img').src = cover;
+          row.cells[0].querySelector('img').alt = title;
+          row.cells[1].innerText = title;
+          row.cells[2].innerText = author;
+          row.cells[3].innerText = genre;
+      }
+  } else if (event.target.classList.contains('deleteBook')) {
+      const row = event.target.closest('tr');
+      row.remove();
   }
-}
-
-function deleteBook(button) {
-  const row = button.parentElement.parentElement;
-  row.remove();
-}
+});
 
 function addTransaction() {
   const book = prompt('Enter book title:');
@@ -94,54 +103,33 @@ function addTransactionToTable(transaction) {
       <td>${transaction.dateBorrowed}</td>
       <td>${transaction.dateReturned}</td>
       <td>
-          <button onclick="editTransaction(this)">Edit</button>
-          <button onclick="deleteTransaction(this)">Delete</button>
+          <button class="editTransaction">Edit</button>
+          <button class="deleteTransaction">Delete</button>
       </td>
   `;
 
   table.appendChild(row);
 }
 
-function editTransaction(button) {
-  const row = button.parentElement.parentElement;
-  const book = prompt('Edit book title:', row.cells[0].innerText);
-  const member = prompt('Edit member name:', row.cells[1].innerText);
-  const dateBorrowed = prompt('Edit date borrowed  (YYYY-MM-DD):', row.cells[2].innerText);
-  const dateReturned = prompt('Edit date returned  (YYYY-MM-DD):', row.cells[3].innerText);
+document.querySelector('#transactions tbody').addEventListener('click', (event) => {
+  if (event.target.classList.contains('editTransaction')) {
+      const row = event.target.closest('tr');
+      const book = prompt('Edit book title:', row.cells[0].innerText);
+      const member = prompt('Edit member name:', row.cells[1].innerText);
+      const dateBorrowed = prompt('Edit date borrowed  (YYYY-MM-DD):', row.cells[2].innerText);
+      const dateReturned = prompt('Edit date returned  (YYYY-MM-DD):', row.cells[3].innerText);
 
-  if (book && member && dateBorrowed && dateReturned) {
-      row.cells[0].innerText = book;
-      row.cells[1].innerText = member;
-      row.cells[2].innerText = dateBorrowed;
-      row.cells[3].innerText = dateReturned;
-  }
-}
-
-function deleteTransaction(button) {
-  const row = button.parentElement.parentElement;
-  row.remove();
-}
-
-function addMember() {
-  alert('Add Member functionality to be implemented ');
-}
-
-
-function searchBooks() {
-  const input = document.getElementById('searchBook');
-  const filter = input.value.toLowerCase();
-  const table = document.querySelector('#books tbody');
-  const rows = table.getElementsByTagName('tr');
-
-  for (let i = 0; i < rows.length; i++) {
-      const title = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
-      if (title.includes(filter)) {
-          rows[i].style.display = '';
-      } else {
-          rows[i].style.display = 'none';
+      if (book && member && dateBorrowed && dateReturned) {
+          row.cells[0].innerText = book;
+          row.cells[1].innerText = member;
+          row.cells[2].innerText = dateBorrowed;
+          row.cells[3].innerText = dateReturned;
       }
+  } else if (event.target.classList.contains('deleteTransaction')) {
+      const row = event.target.closest('tr');
+      row.remove();
   }
-}
+});
 
 function addMember() {
   const name = prompt('Enter member name:');
@@ -163,28 +151,44 @@ function addMemberToTable(member) {
       <td>${member.email}</td>
       <td>${member.membershipDate}</td>
       <td>
-          <button onclick="editMember(this)">Edit</button>
-          <button onclick="deleteMember(this)">Delete</button>
+          <button class="editMember">Edit</button>
+          <button class="deleteMember">Delete</button>
       </td>
   `;
 
   table.appendChild(row);
 }
 
-function editMember(button) {
-  const row = button.parentElement.parentElement;
-  const name = prompt('Edit member name:', row.cells[0].innerText);
-  const email = prompt('Edit member email:', row.cells[1].innerText);
-  const membershipDate = prompt('Edit membership date (YYYY-MM-DD):', row.cells[2].innerText);
+document.querySelector('#members tbody').addEventListener('click', (event) => {
+  if (event.target.classList.contains('editMember')) {
+      const row = event.target.closest('tr');
+      const name = prompt('Edit member name:', row.cells[0].innerText);
+      const email = prompt('Edit member email:', row.cells[1].innerText);
+      const membershipDate = prompt('Edit membership date (YYYY-MM-DD):', row.cells[2].innerText);
 
-  if (name && email && membershipDate) {
-      row.cells[0].innerText = name;
-      row.cells[1].innerText = email;
-      row.cells[2].innerText = membershipDate;
+      if (name && email && membershipDate) {
+          row.cells[0].innerText = name;
+          row.cells[1].innerText = email;
+          row.cells[2].innerText = membershipDate;
+      }
+  } else if (event.target.classList.contains('deleteMember')) {
+      const row = event.target.closest('tr');
+      row.remove();
   }
-}
+});
 
-function deleteMember(button) {
-  const row = button.parentElement.parentElement;
-  row.remove();
+function searchBooks() {
+  const input = document.getElementById('searchBook');
+  const filter = input.value.toLowerCase();
+  const table = document.querySelector('#books tbody');
+  const rows = table.getElementsByTagName('tr');
+
+  for (let i = 0; i < rows.length; i++) {
+      const title = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+      if (title.includes(filter)) {
+          rows[i].style.display = '';
+      } else {
+          rows[i].style.display = 'none';
+      }
+  }
 }
